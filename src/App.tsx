@@ -7,7 +7,13 @@ import SignUp from "./pages/SignUp";
 function App() {
   return (
     <>
-      <h1>Hello FIVE Validation!</h1>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/SignIn" element={<SignIn />} />
+          <Route path="/SignUp" element={<SignUp />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
