@@ -35,10 +35,8 @@ export default function SignUp() {
     password: {
       required: "Input cannot be empty.",
       pattern: {
-        value:
-          /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{6,}$/,
-        message:
-          "At least 6 caracters including 1 capital letter, 1 number and 1 symbol.",
+        value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*)[0-9a-zA-Z]{6,}$/,
+        message: "Require 6 caracteres, a capital letter and a number.",
       },
     },
   };
@@ -51,7 +49,7 @@ export default function SignUp() {
     <div className="bg-blue-900 h-screen px-4">
       <BackHomeButton />
       <div className="flex justify-center items-center h-full">
-        <form className="bg-blue-800 shadow-lg shadow-blue-500/70 w-[35rem] rounded-3xl p-6">
+        <form className="bg-blue-800 shadow-lg shadow-blue-500/70 w-[35rem] rounded-3xl p-4 sm:p-6">
           <img
             src="src/assets/pokedex.png"
             className="mx-auto max-[425px]:w-[85%] pb-10 w-[65%] sm:w-[55%] sm:pb-16"
@@ -60,7 +58,7 @@ export default function SignUp() {
           <div className="flex flex-col mb-6">
             <label
               htmlFor="name"
-              className="sm:text-lg flex flex-col items-start min-[425px]:flex-row min-[425px]:items-center min-[425px]:justify-between text-white font-semibold"
+              className="sm:text-lg flex flex-col gap-2 min-[506px]:gap-0 items-start min-[506px]:flex-row min-[506px]:items-center justify-between text-white font-semibold"
             >
               Name
               {errors.name && (
@@ -90,7 +88,7 @@ export default function SignUp() {
           <div className="flex flex-col mb-5">
             <label
               htmlFor="email"
-              className="sm:text-lg flex flex-col items-start min-[425px]:flex-row min-[425px]:items-center min-[425px]:justify-between text-white font-semibold"
+              className="sm:text-lg flex flex-col gap-2 min-[506px]:gap-0 items-start min-[506px]:flex-row min-[506px]:items-center justify-between text-white font-semibold"
             >
               Email
               {errors.email && (
@@ -120,7 +118,7 @@ export default function SignUp() {
           <div className="flex flex-col mb-5">
             <label
               htmlFor="password"
-              className="sm:text-lg flex flex-col items-start min-[425px]:flex-row min-[425px]:items-center min-[425px]:justify-between text-white font-semibold"
+              className="sm:text-lg flex flex-col gap-2 min-[506px]:gap-0 items-start min-[506px]:flex-row min-[506px]:items-center justify-between text-white font-semibold"
             >
               Password
               {errors.password && (
@@ -141,7 +139,7 @@ export default function SignUp() {
               } p-3 sm:p-4 mt-2 rounded-lg outline-none focus:outline-none transition focus:duration-500 ease-in-out`}
               id="password"
               type="password"
-              placeholder="Must have at least 6 caracters"
+              placeholder="******"
               {...register("password", registerValidation.password)}
               aria-invalid={errors.password ? "true" : "false"}
             />
