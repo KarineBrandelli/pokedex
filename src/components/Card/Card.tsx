@@ -54,7 +54,7 @@ const Card = ({ name, url }: PokemonProps) => {
           <p className="text-gray-200 italic text-lg">
             <small>#</small> {pokemonId}
           </p>
-          <h1 className="text-2xl md:text-4xl font-bold pt-2 text-white capitalize">
+          <h1 className="text-2xl md:text-3xl font-bold pt-2 text-white capitalize">
             {name}
           </h1>
         </div>
