@@ -1,4 +1,29 @@
-export default function DropdownPokemonType() {
+interface TypeProps {
+  handleClick: () => void;
+}
+
+export default function DropdownPokemonType({ handleClick }: TypeProps) {
+  const pokemonsTypes = [
+    "bug",
+    "dark",
+    "dragon",
+    "electric",
+    "fairy",
+    "fighting",
+    "fire",
+    "flying",
+    "ghost",
+    "grass",
+    "ground",
+    "ice",
+    "normal",
+    "poison",
+    "psychic",
+    "rock",
+    "steel",
+    "water",
+  ];
+
   return (
     <div className="dropdown">
       <label
@@ -11,60 +36,14 @@ export default function DropdownPokemonType() {
         tabIndex={0}
         className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 font-bold"
       >
-        <li>
-          <a className="active:bg-blue-800">bug</a>
-        </li>
-        <li>
-          <a className="active:bg-blue-800">dark</a>
-        </li>
-        <li>
-          <a className="active:bg-blue-800">dragon</a>
-        </li>
-        <li>
-          <a className="active:bg-blue-800">electric</a>
-        </li>
-        <li>
-          <a className="active:bg-blue-800">fairy</a>
-        </li>
-        <li>
-          <a className="active:bg-blue-800">fighting</a>
-        </li>
-        <li>
-          <a className="active:bg-blue-800">fire</a>
-        </li>
-        <li>
-          <a className="active:bg-blue-800">flying</a>
-        </li>
-        <li>
-          <a className="active:bg-blue-800">ghost</a>
-        </li>
-        <li>
-          <a className="active:bg-blue-800">grass</a>
-        </li>
-        <li>
-          <a className="active:bg-blue-800">ground</a>
-        </li>
-        <li>
-          <a className="active:bg-blue-800">ice</a>
-        </li>
-        <li>
-          <a className="active:bg-blue-800">normal</a>
-        </li>
-        <li>
-          <a className="active:bg-blue-800">poison</a>
-        </li>
-        <li>
-          <a className="active:bg-blue-800">psychic</a>
-        </li>
-        <li>
-          <a className="active:bg-blue-800">rock</a>
-        </li>
-        <li>
-          <a className="active:bg-blue-800">steel</a>
-        </li>
-        <li>
-          <a className="active:bg-blue-800">water</a>
-        </li>
+        {pokemonsTypes.map((pokeType, i: number) => (
+          <li
+            onClick={handleClick}
+            key={`${pokeType}-${i}`}
+          >
+            <a className="active:bg-blue-800">{pokeType}</a>
+          </li>
+        ))}
       </ul>
     </div>
   );
