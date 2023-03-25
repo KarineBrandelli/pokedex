@@ -1,4 +1,10 @@
-export default function DropdownPokemonGeneration() {
+import dataGeneration from "../../utils/dataGeneration";
+
+interface GenerationProps {
+  handleClick: (id: number) => void;
+}
+
+export default function DropdownPokemonGeneration({ handleClick }: GenerationProps) {
   return (
     <div className="dropdown">
       <label
@@ -11,30 +17,14 @@ export default function DropdownPokemonGeneration() {
         tabIndex={0}
         className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 font-bold"
       >
-        <li>
-          <a className="active:bg-blue-800">I</a>
-        </li>
-        <li>
-          <a className="active:bg-blue-800">II</a>
-        </li>
-        <li>
-          <a className="active:bg-blue-800">III</a>
-        </li>
-        <li>
-          <a className="active:bg-blue-800">IV</a>
-        </li>
-        <li>
-          <a className="active:bg-blue-800">V</a>
-        </li>
-        <li>
-          <a className="active:bg-blue-800">VI</a>
-        </li>
-        <li>
-          <a className="active:bg-blue-800">VII</a>
-        </li>
-        <li>
-          <a className="active:bg-blue-800">VIII</a>
-        </li>
+        {dataGeneration.map((pokeGeneration, i: number) => (
+          <li
+            onClick={() => handleClick(pokeGeneration.id)}
+            key={`${pokeGeneration.id}-${i}`}
+          >
+            <a className="active:bg-blue-800">{pokeGeneration.text}</a>
+          </li>
+        ))}
       </ul>
     </div>
   );
