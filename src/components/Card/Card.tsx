@@ -55,7 +55,7 @@ const Card = ({ name, url }: PokemonProps) => {
             <small>#</small> {pokemonId}
           </p>
           <h1 className="text-2xl md:text-3xl font-bold pt-2 text-white capitalize">
-            {name}
+            {name.replace(/-/g, " ")}
           </h1>
         </div>
         <div className="flex flex-col text-center gap-2">
