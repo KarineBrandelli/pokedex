@@ -1,7 +1,27 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { ArrowLeft, UserCircle } from "@phosphor-icons/react";
 
-export default function UserProfile() {
+interface UserInformation {
+  name: string;
+  email: string;
+}
+
+export default function UserProfile({ name, email }: UserInformation) {
+  const [userProfileInfo, setUserProfileInfo] = useState<UserInformation>({
+    name: "Jane Doe",
+    email: "janedoe@domain.com",
+  });
+
+  useEffect(() => {
+    const storedDataSignUp = localStorage.getItem("sign-up");
+    if (storedDataSignUp) {
+      setUserProfileInfo(JSON.parse(storedDataSignUp));
+    }
+  }, []);
+
+  console.log(userProfileInfo);
+
   return (
     <>
       <nav className="bg-blue-800 px-10 py-3 flex min-[340px]:justify-between justify-center sticky top-0">
@@ -21,10 +41,13 @@ export default function UserProfile() {
           </span>
           <div className="flex flex-col max-[465px]:items-center gap-3 text-white ">
             <span className="bg-blue-600 w-fit px-3 py-1 rounded-lg">
-              Name: Jane Doe
+              Name: {userProfileInfo.name}
             </span>
             <span className="bg-blue-600 w-fit px-3 py-1 rounded-lg">
-              Email: janedoe@domain.com
+              Email: {userProfileInfo.email}
+            </span>
+            <span className="text-blue-600 w-fit rounded-lg cursor-pointer">
+              Sign Out
             </span>
           </div>
         </div>
