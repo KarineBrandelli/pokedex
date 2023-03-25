@@ -6,6 +6,7 @@ interface FormValues {
 
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useState, useEffect } from "react";
 import BackHomeButton from "../components/BackHomeButton/BackHomeButton";
 
 export default function SignUp() {
@@ -41,9 +42,17 @@ export default function SignUp() {
     },
   };
 
+  const [userInfo, setUserInfo] = useState({});
+
   const handleRegistration = (data: object) => {
-    console.log(data);
+    setUserInfo(data);
   };
+
+  useEffect(() => {
+    localStorage.setItem("sign-up", JSON.stringify(userInfo));
+  }, [userInfo]);
+
+  console.log(userInfo);
 
   return (
     <div className="bg-blue-900 h-screen px-4">
