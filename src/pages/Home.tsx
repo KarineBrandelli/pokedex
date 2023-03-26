@@ -13,11 +13,12 @@ import dataGeneration from "../utils/dataGeneration";
 
 export default function Home() {
   const [list, setList] = useState<{ name: string; url: string }[]>([]);
-  const [inputValue, setInputValue] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSearching, setIsSearching] = useState(true);
-  const [limit, setLimit] = useState(24);
-  const [offset, setOffset] = useState(0);
+  const [inputValue, setInputValue] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isSearching, setIsSearching] = useState<boolean>(true);
+  const [isGeneration, setIsGeneration] = useState<boolean>(false);
+  const [limit, setLimit] = useState<number>(20);
+  const [offset, setOffset] = useState<number>(0);
 
   useEffect(() => {
     setIsLoading(true);
