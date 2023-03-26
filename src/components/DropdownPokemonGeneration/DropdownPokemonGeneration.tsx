@@ -1,17 +1,22 @@
+import { useState } from "react";
 import dataGeneration from "../../utils/dataGeneration";
 
 interface GenerationProps {
   handleClick: (id: number) => void;
 }
 
-export default function DropdownPokemonGeneration({ handleClick }: GenerationProps) {
+export default function DropdownPokemonGeneration({
+  handleClick,
+}: GenerationProps) {
+  const [generationText, setGenerationText] = useState<string>("");
+
   return (
     <div className="dropdown">
       <label
         tabIndex={0}
         className="btn bg-blue-800 border-none hover:bg-blue-600"
       >
-        Filter: Generation
+        Filter: Generation {generationText}
       </label>
       <ul
         tabIndex={0}
@@ -19,7 +24,10 @@ export default function DropdownPokemonGeneration({ handleClick }: GenerationPro
       >
         {dataGeneration.map((pokeGeneration, i: number) => (
           <li
-            onClick={() => handleClick(pokeGeneration.id)}
+            onClick={() => {
+              handleClick(i);
+              setGenerationText(pokeGeneration.text);
+            }}
             key={`${pokeGeneration.id}-${i}`}
           >
             <a className="active:bg-blue-800">{pokeGeneration.text}</a>
