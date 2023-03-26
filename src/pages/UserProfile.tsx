@@ -7,6 +7,11 @@ interface UserInformation {
   email: string;
 }
 
+interface PokemonFilterProps {
+  name: string;
+  url: string;
+}
+
 export default function UserProfile({ name, email }: UserInformation) {
   const [userProfileInfo, setUserProfileInfo] = useState<UserInformation>({
     name: "Jane Doe",
