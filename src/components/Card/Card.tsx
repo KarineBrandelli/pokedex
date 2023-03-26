@@ -8,6 +8,8 @@ import { getImageURL } from "../../utils/getImageURL";
 interface PokemonProps {
   name: string;
   url: string;
+  handleClick: () => void;
+  setRotate: boolean;
 }
 interface PokemonInfoProps {
   base_experience: number;
@@ -20,7 +22,7 @@ interface PokemonType {
   };
 }
 
-const Card = ({ name, url }: PokemonProps) => {
+const Card = ({ name, url, handleClick, setRotate }: PokemonProps) => {
   const [pokemonInfo, setPokemonInfo] = useState<PokemonInfoProps>({
     base_experience: 0,
     types: [{ type: { name: "fire" } }],
@@ -55,7 +57,7 @@ const Card = ({ name, url }: PokemonProps) => {
             <small>#</small> {pokemonId}
           </p>
           <h1 className="text-2xl md:text-3xl font-bold pt-2 text-white capitalize">
-            {name.replace(/-/g, " ")}
+            {name}
           </h1>
         </div>
         <div className="flex flex-col text-center gap-2">
@@ -74,7 +76,14 @@ const Card = ({ name, url }: PokemonProps) => {
           <p>
             {pokemonInfo.base_experience} <span className="text-sm">XP</span>
           </p>
-          <p className="rounded-full bg-gray-700/20 p-1 cursor-pointer">
+          <p
+            onClick={handleClick}
+            className={
+              setRotate
+                ? "rounded-full bg-gray-700/20 p-1 cursor-pointer rotate-45"
+                : "rounded-full bg-gray-700/20 p-1 cursor-pointer"
+            }
+          >
             <Plus size={20} />
           </p>
         </span>
