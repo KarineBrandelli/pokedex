@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Card from "../components/Card/Card";
 import { useState, useEffect } from "react";
 import { ArrowLeft, UserCircle } from "@phosphor-icons/react";
 
@@ -17,6 +18,12 @@ export default function UserProfile({ name, email }: UserInformation) {
     name: "Your Username",
     email: "youruser@domain.com",
   });
+
+  const [userPokemons, setUserPokemons] = useState<Array<{ name: string; url: string }>>([{
+      name: "Pikachu",
+      url: "https://pokeapi.co/api/v2/pokemon/pikachu",
+    },
+  ]);
 
   useEffect(() => {
     const storedData = localStorage.getItem("user-info");
@@ -77,9 +84,6 @@ export default function UserProfile({ name, email }: UserInformation) {
             <span className="bg-blue-600 w-fit px-3 py-1 rounded-lg">
               Email: {userProfileInfo.email}
             </span>
-            <span className="text-blue-600 w-fit rounded-lg cursor-pointer">
-              Sign Out
-            </span>
           </div>
         </div>
 
@@ -88,10 +92,22 @@ export default function UserProfile({ name, email }: UserInformation) {
         </h2>
 
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
-          <div className="bg-gradient-to-r from-blue-800 to-blue-500 flex flex-col gap-5 justify-center items-center text-center rounded-3xl h-64 shadow-lg p-4 md:text-xl text-white font-semibold">
-            <p>You don't have any pokemons in your favorites yet.</p>
-            <p>Go back and add some pokemons to your profile!</p>
-          </div>
+          {userPokemons.length === 0 ? (
+            <div className="bg-gradient-to-r from-blue-800 to-blue-500 flex flex-col gap-5 justify-center items-center text-center rounded-3xl h-64 shadow-lg p-4 md:text-xl text-white font-semibold">
+              <p>You don't have any pokemons in your favorites yet.</p>
+              <p>Go back and add some pokemons to your profile!</p>
+            </div>
+          ) : (
+            userPokemons.map((pokemon, i: number) => (
+              <Card
+                setRotate={true}
+                key={`${pokemon.name}-${i}`}
+                name={pokemon.name}
+                url={pokemon.url}
+                handleClick={() => removePokemon(pokemon.name)}
+              />
+            ))
+          )}
         </div>
       </div>
     </>
