@@ -58,11 +58,22 @@ export default function Home() {
 
   function findPokemonType() {}
 
-  function findPokemonGeneration(id: number) {
-    const currentIdGeneration = dataGeneration[id - 1];
-    setLimit(currentIdGeneration.limit);
-    setOffset(currentIdGeneration.offset);
-    console.log(dataGeneration[id - 1]);
+  function getPokemonGeneration(index: number) {
+    const getURL: Array<string> = [];
+    dataGeneration.map((generationURL) => {
+      getURL.push(generationURL.url);
+    });
+
+    for (let i = 0; i < getURL.length; i++) {
+      if (index === i) {
+        setIsLoading(true);
+        axios.get(`${getURL[i]}`).then((response) => {
+          setTimeout(() => setIsLoading(false), 1000);
+          setIsGeneration(true);
+          setList(response.data.results);
+        });
+      }
+    }
   }
 
   return (
@@ -79,7 +90,7 @@ export default function Home() {
         />
         <span className="flex max-[400px]:flex-col items-center max-[400px]:gap-4 gap-8">
           <DropdownPokemonType handleClick={findPokemonType} />
-          <DropdownPokemonGeneration handleClick={findPokemonGeneration} />
+          <DropdownPokemonGeneration handleClick={getPokemonGeneration} />          
         </span>
       </div>
 
@@ -96,7 +107,7 @@ export default function Home() {
       )}
 
       <Pagination
-        setHidden={isSearching && !isLoading}
+        setHidden={isSearching && !isLoading && !isGeneration}
         handlePrevious={() => setOffset(offset - limit)}
         handleNext={() => setOffset(offset + limit)}
       />
