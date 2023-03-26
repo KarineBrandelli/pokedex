@@ -26,7 +26,27 @@ export default function UserProfile({ name, email }: UserInformation) {
     }
   }, []);
 
-  console.log(userProfileInfo);
+  function removePokemon(name: string) {
+    const storedData = localStorage.getItem("user-info");
+
+    if (storedData) {
+      const profilePokemons = JSON.parse(storedData);
+
+      const findPokemonName = profilePokemons.pokemons.filter(
+        (pokemon: PokemonFilterProps) => pokemon.name !== name
+      );
+
+      const userData = {
+        ...profilePokemons,
+        pokemons: findPokemonName,
+      };
+
+      console.log(findPokemonName);
+
+      localStorage.setItem("user-info", JSON.stringify(userData));
+      setUserPokemons(findPokemonName);
+    }
+  }
 
   return (
     <>
