@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect, ChangeEvent } from "react";
 
 import Card from "../components/Card/Card";
@@ -76,6 +77,25 @@ export default function Home() {
     }
   }
 
+  const history = useNavigate();
+
+  function addPokemon(name: string, url: string) {
+    const storedData = localStorage.getItem("user-info");
+
+    if (storedData) {
+      const profilePokemons = JSON.parse(storedData);
+      const userDataPokemons = {
+        ...profilePokemons,
+        pokemons: [...profilePokemons.pokemons, { name, url }],
+      };
+
+      localStorage.setItem("user-info", JSON.stringify(userDataPokemons));
+      alert("You catch that pokemon!");
+    } else {
+      history("/UserInfo");
+    }
+  }
+
   return (
     <>
       <Header />
@@ -89,8 +109,8 @@ export default function Home() {
           }
         />
         <span className="flex max-[400px]:flex-col items-center max-[400px]:gap-4 gap-8">
+          <DropdownPokemonGeneration handleClick={getPokemonGeneration} />
           <DropdownPokemonType handleClick={findPokemonType} />
-          <DropdownPokemonGeneration handleClick={getPokemonGeneration} />          
         </span>
       </div>
 
@@ -100,7 +120,13 @@ export default function Home() {
         <main className="w-[85%] mx-auto">
           <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
             {list.map((item) => (
-              <Card key={item.name} name={item.name} url={item.url} />
+              <Card
+                setRotate={false}
+                key={item.name}
+                name={item.name}
+                url={item.url}
+                handleClick={() => addPokemon(item.name, item.url)}
+              />
             ))}
           </div>
         </main>
