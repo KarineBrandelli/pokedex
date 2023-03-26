@@ -14,9 +14,15 @@ export default function UserProfile({ name, email }: UserInformation) {
   });
 
   useEffect(() => {
-    const storedDataSignUp = localStorage.getItem("sign-up");
-    if (storedDataSignUp) {
-      setUserProfileInfo(JSON.parse(storedDataSignUp));
+    const storedData = localStorage.getItem("user-info");
+
+    if (storedData) {
+      const profilePokemons = JSON.parse(storedData);
+      setUserPokemons(profilePokemons.pokemons);
+      setUserProfileInfo({
+        name: profilePokemons.name,
+        email: profilePokemons.email,
+      });
     }
   }, []);
 
