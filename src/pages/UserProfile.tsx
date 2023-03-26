@@ -14,8 +14,8 @@ interface PokemonFilterProps {
 
 export default function UserProfile({ name, email }: UserInformation) {
   const [userProfileInfo, setUserProfileInfo] = useState<UserInformation>({
-    name: "Jane Doe",
-    email: "janedoe@domain.com",
+    name: "Your Username",
+    email: "youruser@domain.com",
   });
 
   useEffect(() => {
@@ -61,7 +61,7 @@ export default function UserProfile({ name, email }: UserInformation) {
       <div className="w-[85%] mx-auto pt-10 pb-5 flex text-blue-600 font-bold">
         <Link to={"/"} className="flex items-center gap-4">
           <ArrowLeft size={28} />
-          <span className="text-lg">Go Back</span>
+          <span className="text-lg">Find Pokemons</span>
         </Link>
       </div>
 
