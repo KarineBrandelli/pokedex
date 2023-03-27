@@ -1,29 +1,10 @@
+import pokemonsType from "../../utils/pokemonsType";
+
 interface TypeProps {
-  handleClick: () => void;
+  handleClick: (pokeType: string) => void;
 }
 
 export default function DropdownPokemonType({ handleClick }: TypeProps) {
-  const pokemonsTypes = [
-    "bug",
-    "dark",
-    "dragon",
-    "electric",
-    "fairy",
-    "fighting",
-    "fire",
-    "flying",
-    "ghost",
-    "grass",
-    "ground",
-    "ice",
-    "normal",
-    "poison",
-    "psychic",
-    "rock",
-    "steel",
-    "water",
-  ];
-
   return (
     <div className="dropdown">
       <label
@@ -36,12 +17,14 @@ export default function DropdownPokemonType({ handleClick }: TypeProps) {
         tabIndex={0}
         className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 font-bold"
       >
-        {pokemonsTypes.map((pokeType, i: number) => (
-          <li
-            onClick={handleClick}
-            key={`${pokeType}-${i}`}
-          >
-            <a className="active:bg-blue-800">{pokeType}</a>
+        {pokemonsType.map((pokeType, i: number) => (
+          <li key={`${pokeType}-${i}`}>
+            <a
+              onClick={() => handleClick(pokeType)}
+              className="active:bg-blue-800 text-sm sm:text-base"
+            >
+              {pokeType}
+            </a>
           </li>
         ))}
       </ul>
