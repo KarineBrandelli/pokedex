@@ -1,0 +1,68 @@
+const generations = [
+  {
+    id: 1,
+    link: "generation-i",
+    url: "https://pokeapi.co/api/v2/pokemon?limit=151&offset=0",
+    text: "I",
+    offset: 0,
+    limit: 151,
+  },
+  {
+    id: 2,
+    link: "generation-ii",
+    url: "https://pokeapi.co/api/v2/pokemon?limit=100&offset=151",
+    text: "II",
+    offset: 151,
+    limit: 100,
+  },
+  {
+    id: 3,
+    link: "generation-iii",
+    url: "https://pokeapi.co/api/v2/pokemon?limit=135&offset=251",
+    text: "III",
+    offset: 251,
+    limit: 135,
+  },
+  {
+    id: 4,
+    link: "generation-iv",
+    url: "https://pokeapi.co/api/v2/pokemon?limit=107&offset=386",
+    text: "IV",
+    offset: 386,
+    limit: 107,
+  },
+  {
+    id: 5,
+    link: "generation-v",
+    url: "https://pokeapi.co/api/v2/pokemon?limit=156&offset=493",
+    text: "V",
+    offset: 493,
+    limit: 156,
+  },
+  {
+    id: 6,
+    link: "generation-vi",
+    url: "https://pokeapi.co/api/v2/pokemon?limit=72&offset=649",
+    text: "VI",
+    offset: 649,
+    limit: 72,
+  },
+  {
+    id: 7,
+    link: "generation-vii",
+    url: "https://pokeapi.co/api/v2/pokemon?limit=88&offset=721",
+    text: "VII",
+    offset: 721,
+    limit: 88,
+  },
+  {
+    id: 8,
+    link: "generation-viii",
+    url: "https://pokeapi.co/api/v2/pokemon?limit=89&offset=809",
+    text: "VIII",
+    offset: 809,
+    limit: 89,
+  },
+];
+
+export default generations;
