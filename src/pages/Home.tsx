@@ -90,7 +90,7 @@ export default function Home() {
       };
 
       localStorage.setItem("user-info", JSON.stringify(userDataPokemons));
-      alert("You catch that pokemon!");
+      alert("You've captured that pokemon!");
     } else {
       history("/UserInfo");
     }
