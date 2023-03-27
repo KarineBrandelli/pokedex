@@ -24,11 +24,11 @@ export default function Header() {
 
         {loggedUser.length > 0 ? (
           <Link to={"/UserProfile"}>
-            <p className="font-semibold">{loggedUser}</p>
+            <p className="text-sm sm:text-base font-semibold">{loggedUser}</p>
           </Link>
         ) : (
           <Link to={"/UserInfo"}>
-            <p className="font-semibold">Sign In</p>
+            <p className="text-sm sm:text-base font-semibold">Sign In</p>
           </Link>
         )}
       </div>
