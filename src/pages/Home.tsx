@@ -18,13 +18,13 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSearching, setIsSearching] = useState<boolean>(true);
   const [isGeneration, setIsGeneration] = useState<boolean>(false);
-  const [limit, setLimit] = useState<number>(20);
+  const [limit, setLimit] = useState<number>(66);
   const [offset, setOffset] = useState<number>(0);
 
   useEffect(() => {
     setIsLoading(true);
     axios
-      .get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit${limit}`)
+      .get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`)
       .then((response) => {
         setTimeout(() => setIsLoading(false), 500);
         setList(response.data.results);
