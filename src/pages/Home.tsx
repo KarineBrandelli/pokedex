@@ -14,6 +14,7 @@ import dataGeneration from "../utils/dataGeneration";
 
 export default function Home() {
   const [list, setList] = useState<{ name: string; url: string }[]>([]);
+  const [pokemonTypeName, setPokemonTypeName] = useState<string>("");
   const [inputValue, setInputValue] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSearching, setIsSearching] = useState<boolean>(true);
@@ -57,7 +58,9 @@ export default function Home() {
       });
   }
 
-  function findPokemonType() {}
+  function getPokemonType(dropdownType: string) {
+    setPokemonTypeName(dropdownType);
+  }
 
   function getPokemonGeneration(index: number) {
     const getURL: Array<string> = [];
@@ -110,7 +113,7 @@ export default function Home() {
         />
         <span className="flex max-[400px]:flex-col items-center max-[400px]:gap-4 gap-8">
           <DropdownPokemonGeneration handleClick={getPokemonGeneration} />
-          <DropdownPokemonType handleClick={findPokemonType} />
+          <DropdownPokemonType handleClick={getPokemonType} />
         </span>
       </div>
 
@@ -121,6 +124,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
             {list.map((item) => (
               <Card
+                typePokemon={pokemonTypeName}
                 setRotate={false}
                 key={item.name}
                 name={item.name}
