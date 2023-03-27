@@ -21,6 +21,7 @@ export default function Home() {
   const [isGeneration, setIsGeneration] = useState<boolean>(false);
   const [limit, setLimit] = useState<number>(102);
   const [offset, setOffset] = useState<number>(0);
+  const history = useNavigate();
 
   useEffect(() => {
     setIsLoading(true);
@@ -34,18 +35,19 @@ export default function Home() {
 
   function findPokemonInput() {
     if (inputValue.length !== 0) {
-    axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${inputValue}`)
-      .then((response) => {
-        const { name } = response.data;
-        setList([
-          { name, url: `https://pokeapi.co/api/v2/pokemon/${inputValue}` },
-        ]);
-        setIsSearching(false);
-      })
-      .catch((error) => {
-        alert("Pokemon not found");
-      });
+      axios
+        .get(`https://pokeapi.co/api/v2/pokemon/${inputValue}`)
+        .then((response) => {
+          const { name } = response.data;
+          setList([
+            { name, url: `https://pokeapi.co/api/v2/pokemon/${inputValue}` },
+          ]);
+          setIsSearching(false);
+        })
+        .catch((error) => {
+          alert("Pokemon not found");
+        });
+    }
   }
 
   function clearInputValue() {
@@ -80,8 +82,6 @@ export default function Home() {
       }
     }
   }
-
-  const history = useNavigate();
 
   function addPokemon(name: string, url: string) {
     const storedData = localStorage.getItem("user-info");
