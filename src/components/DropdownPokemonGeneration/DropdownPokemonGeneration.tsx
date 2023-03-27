@@ -30,7 +30,9 @@ export default function DropdownPokemonGeneration({
             }}
             key={`${pokeGeneration.id}-${i}`}
           >
-            <a className="active:bg-blue-800">{pokeGeneration.text}</a>
+            <a className="active:bg-blue-800 text-sm sm:text-base">
+              {pokeGeneration.text}
+            </a>
           </li>
         ))}
       </ul>
