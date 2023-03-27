@@ -53,10 +53,10 @@ const Card = ({ name, url, handleClick, setRotate }: PokemonProps) => {
     >
       <div className="flex flex-col justify-between">
         <div>
-          <p className="text-gray-200 italic text-lg">
+          <p className="text-gray-200 italic sm:text-lg">
             <small>#</small> {pokemonId}
           </p>
-          <h1 className="text-2xl md:text-3xl font-bold pt-2 text-white capitalize">
+          <h1 className="text-2xl sm:text-3xl font-bold pt-2 text-white capitalize">
             {name}
           </h1>
         </div>
@@ -64,7 +64,7 @@ const Card = ({ name, url, handleClick, setRotate }: PokemonProps) => {
           {pokemonType.map((type, i: number) => (
             <span
               key={`${type}-${i}`}
-              className="text-sm md:text-base rounded-full w-20 py-0.5 text-white font-semibold bg-white/30"
+              className="text-xs sm:text-base rounded-full w-14 sm:w-20 py-1 text-white font-semibold bg-white/30"
             >
               {type}
             </span>
@@ -72,9 +72,10 @@ const Card = ({ name, url, handleClick, setRotate }: PokemonProps) => {
         </div>
       </div>
       <div className="flex flex-col items-end justify-between">
-        <span className="flex gap-5 font-semibold text-white text-lg">
-          <p>
-            {pokemonInfo.base_experience} <span className="text-sm">XP</span>
+        <span className="flex items-center gap-2.5 font-semibold text-white text-lg">
+          <p className="text-sm sm:text-base">
+            {pokemonInfo.base_experience}
+            <span className="text-xs sm:text-sm"> XP</span>
           </p>
           <p
             onClick={handleClick}
@@ -84,10 +85,10 @@ const Card = ({ name, url, handleClick, setRotate }: PokemonProps) => {
                 : "rounded-full bg-gray-700/20 p-1 cursor-pointer"
             }
           >
-            <Plus size={20} />
+            <Plus size={18} />
           </p>
         </span>
-        <img src={imgURL} alt={`${name} image`} className="w-[11rem] h-[85%]"></img>
+        <img src={imgURL} alt={`${name} image`} className="w-[95%] max-h-[85%]"></img>
       </div>
     </div>
   );
