@@ -1,5 +1,5 @@
-import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import BackHomeButton from "../components/BackHomeButton/BackHomeButton";
 
@@ -12,12 +12,21 @@ interface FormValues {
 }
 
 export default function UserInfo() {
+  const history = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({
     mode: "onBlur",
+  });
+
+  const [userInfo, setUserInfo] = useState({
+    name: "",
+    email: "",
+    password: "",
+    pokemons: [],
   });
 
   const registerValidation = {
@@ -44,17 +53,7 @@ export default function UserInfo() {
     },
   };
 
-  const history = useNavigate();
-
-  const [userInfo, setUserInfo] = useState({
-    name: "",
-    email: "",
-    password: "",
-    pokemons: [],
-  });
-
   const handleRegistration = (data: FormValues) => {
-    console.log(data);
     const userData = {
       ...userInfo,
       name: data.name,
