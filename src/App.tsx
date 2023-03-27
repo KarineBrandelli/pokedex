@@ -1,4 +1,4 @@
-import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes, HashRouter } from "react-router-dom";
 
 import Home from "./pages/Home";
 import UserInfo from "./pages/UserInfo";
@@ -7,7 +7,7 @@ import UserProfile from "./pages/UserProfile";
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/UserInfo" element={<UserInfo />} />
@@ -16,7 +16,7 @@ function App() {
             element={<UserProfile name={""} email={""} />}
           />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 }
