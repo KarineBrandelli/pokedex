@@ -18,7 +18,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSearching, setIsSearching] = useState<boolean>(true);
   const [isGeneration, setIsGeneration] = useState<boolean>(false);
-  const [limit, setLimit] = useState<number>(66);
+  const [limit, setLimit] = useState<number>(102);
   const [offset, setOffset] = useState<number>(0);
 
   useEffect(() => {
