@@ -8,9 +8,9 @@
 
 The application represents a Pokédex developed using [Pokeapi](https://pokeapi.co/), and contain 3 main pages.
 
-1. On the initial page, the user can view all existing pokemons, search for a desired pokemon by name and also filter pokemons by type and generation.
-2. On the login page, the user will fill in his personal information in the registration form that counts with a validation.
-3. On the users profile page, contains user personal information and his personal pokédex.
+**1.** On the initial page, the user can view all existing pokemons, search for a desired pokemon by name and also filter pokemons by type and generation. <br>
+**2.** On the login page, the user will fill in his personal information in the registration form that counts with a validation. <br>
+**3.** On the users profile page, contains user personal information and his personal pokédex.
 
 The function to add pokemons to the user profile will only execute if the user is logged on. The user can also remove pokemons from his personal pokedex.
 
@@ -34,7 +34,7 @@ Then install the project dependencies using the following command:
 npm install
 ```
 
-Next, start the development server doing the following:
+Next, start the development server doing what follows:
 
 ```bash
 npm run dev
