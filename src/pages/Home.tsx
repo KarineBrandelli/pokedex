@@ -33,6 +33,7 @@ export default function Home() {
   }, [offset]);
 
   function findPokemonInput() {
+    if (inputValue.length !== 0) {
     axios
       .get(`https://pokeapi.co/api/v2/pokemon/${inputValue}`)
       .then((response) => {
