@@ -3,6 +3,8 @@ import Card from "../components/Card/Card";
 import { useState, useEffect } from "react";
 import { ArrowLeft, UserCircle } from "@phosphor-icons/react";
 
+import Pokedex from "../assets/pokedex.png";
+
 interface UserInformation {
   name: string;
   email: string;
@@ -56,8 +58,6 @@ export default function UserProfile({ name, email }: UserInformation) {
         pokemons: findPokemonName,
       };
 
-      console.log(findPokemonName);
-
       localStorage.setItem("user-info", JSON.stringify(userData));
       setUserPokemons(findPokemonName);
     }
@@ -66,10 +66,7 @@ export default function UserProfile({ name, email }: UserInformation) {
   return (
     <>
       <nav className="bg-blue-800 px-10 py-3 sticky top-0">
-        <img
-          src="src/assets/pokedex.png"
-          className="w-[11rem] max-[375px]:mx-auto"
-        ></img>
+        <img src={Pokedex} className="w-[11rem] max-[375px]:mx-auto"></img>
       </nav>
       <div className="w-[85%] mx-auto pt-10 pb-5 flex text-blue-600 font-bold">
         <Link to={"/"} className="flex items-center gap-4">
@@ -106,6 +103,7 @@ export default function UserProfile({ name, email }: UserInformation) {
           ) : (
             userPokemons.map((pokemon, i: number) => (
               <Card
+                typePokemon={""}
                 setRotate={true}
                 key={`${pokemon.name}-${i}`}
                 name={pokemon.name}
