@@ -87,7 +87,7 @@ const Card = ({ name, url, handleClick, setRotate }: PokemonProps) => {
             <Plus size={20} />
           </p>
         </span>
-        <img src={imgURL} className="w-[11rem] h-[85%]"></img>
+        <img src={imgURL} alt={`${name} image`} className="w-[11rem] h-[85%]"></img>
       </div>
     </div>
   );
