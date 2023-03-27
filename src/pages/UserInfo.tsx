@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BackHomeButton from "../components/BackHomeButton/BackHomeButton";
 
+import Pokedex from "../assets/pokedex.png";
+
 interface FormValues {
   name: string;
   email: string;
@@ -71,7 +73,7 @@ export default function UserInfo() {
 
       <form className="bg-blue-800 shadow-lg shadow-blue-500/70 rounded-2xl sm:rounded-3xl p-4 sm:p-6 max-w-[35rem] mx-auto mt-6 min-[425px]:mt-16">
         <img
-          src="src/assets/pokedex.png"
+          src={Pokedex}
           className="mx-auto max-[425px]:w-[70%] w-[65%] sm:w-[55%]"
         ></img>
 
