@@ -12,6 +12,8 @@ import DropdownPokemonGeneration from "../components/DropdownPokemonGeneration/D
 
 import dataGeneration from "../utils/dataGeneration";
 
+import { initalLoad } from "../utils/API_functions";
+
 export default function Home() {
   const [list, setList] = useState<{ name: string; url: string }[]>([]);
   const [pokemonTypeName, setPokemonTypeName] = useState<string>("");
@@ -24,13 +26,7 @@ export default function Home() {
   const history = useNavigate();
 
   useEffect(() => {
-    setIsLoading(true);
-    axios
-      .get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`)
-      .then((response) => {
-        setTimeout(() => setIsLoading(false), 500);
-        setList(response.data.results);
-      });
+    initalLoad(offset, limit, setIsLoading, setList);
   }, [offset]);
 
   function findPokemonInput() {
