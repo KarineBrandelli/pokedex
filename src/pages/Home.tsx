@@ -17,14 +17,6 @@ import DropdownPokemonGeneration from "../components/DropdownPokemonGeneration/D
 import dataGeneration from "../utils/dataGeneration";
 
 export default function Home() {
-  const [list, setList] = useState<{ name: string; url: string }[]>([]);
-  const [pokemonTypeName, setPokemonTypeName] = useState<string>("");
-  const [inputValue, setInputValue] = useState<string>("");
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isSearching, setIsSearching] = useState<boolean>(true);
-  const [isGeneration, setIsGeneration] = useState<boolean>(false);
-  const [limit, setLimit] = useState<number>(102);
-  const [offset, setOffset] = useState<number>(0);
   const history = useNavigate();
 
   const {
@@ -48,56 +40,6 @@ export default function Home() {
         setList(response.data.results);
       });
   }, [offset]);
-
-  function findPokemonInput() {
-    if (inputValue.length !== 0) {
-      axios
-        .get(`https://pokeapi.co/api/v2/pokemon/${inputValue}`)
-        .then((response) => {
-          const { name } = response.data;
-          setList([
-            { name, url: `https://pokeapi.co/api/v2/pokemon/${inputValue}` },
-          ]);
-          setIsSearching(false);
-        })
-        .catch((error) => {
-          alert("Pokemon not found");
-        });
-    }
-  }
-
-  function clearInputValue() {
-    axios
-      .get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit${limit}`)
-      .then((response) => {
-        setTimeout(() => setIsLoading(false), 500);
-        setList(response.data.results);
-        setInputValue("");
-        setIsSearching(true);
-      });
-  }
-
-  function getPokemonType(dropdownType: string) {
-    setPokemonTypeName(dropdownType);
-  }
-
-  function getPokemonGeneration(index: number) {
-    const getURL: Array<string> = [];
-    dataGeneration.map((generationURL) => {
-      getURL.push(generationURL.url);
-    });
-
-    for (let i = 0; i < getURL.length; i++) {
-      if (index === i) {
-        setIsLoading(true);
-        axios.get(`${getURL[i]}`).then((response) => {
-          setTimeout(() => setIsLoading(false), 1000);
-          setIsGeneration(true);
-          setList(response.data.results);
-        });
-      }
-    }
-  }
 
   function addPokemon(name: string, url: string) {
     const storedData = localStorage.getItem("user-info");
