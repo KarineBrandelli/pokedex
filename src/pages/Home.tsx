@@ -1,4 +1,8 @@
 import axios from "axios";
+import { useContext, useEffect } from "react";
+
+import { AppContext } from "../context/AppContext";
+
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, ChangeEvent } from "react";
 
@@ -22,6 +26,18 @@ export default function Home() {
   const [limit, setLimit] = useState<number>(102);
   const [offset, setOffset] = useState<number>(0);
   const history = useNavigate();
+
+  const {
+    list,
+    setList,
+    pokemonTypeName,
+    isLoading,
+    setIsLoading,
+    isSearching,
+    isGeneration,
+    limit,
+    offset,
+  } = useContext(AppContext);
 
   useEffect(() => {
     setIsLoading(true);
