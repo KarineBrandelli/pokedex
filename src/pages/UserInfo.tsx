@@ -1,57 +1,57 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import BackHomeButton from "../components/BackHomeButton/BackHomeButton";
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { BackHomeButton } from '../components/BackHomeButton/BackHomeButton'
 
-import Pokedex from "../assets/pokedex.png";
+import Pokedex from '../assets/pokedex.png'
 
 interface FormValues {
-  name: string;
-  email: string;
-  password: string;
+  name: string
+  email: string
+  password: string
 }
 
-export default function UserInfo() {
-  const history = useNavigate();
+export function UserInfo() {
+  const history = useNavigate()
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({
-    mode: "onBlur",
-  });
+    mode: 'onBlur',
+  })
 
-  const [userInfo, setUserInfo] = useState({
-    name: "",
-    email: "",
-    password: "",
+  const userInfo = useState({
+    name: '',
+    email: '',
+    password: '',
     pokemons: [],
-  });
+  })
 
   const registerValidation = {
     name: {
-      required: "Input cannot be empty.",
+      required: 'Input cannot be empty.',
       pattern: {
         value: /[a-zA-Z\s]+$/,
-        message: "Numbers and special characters are not allowed.",
+        message: 'Numbers and special characters are not allowed.',
       },
     },
     email: {
-      required: "Input cannot be empty.",
+      required: 'Input cannot be empty.',
       pattern: {
         value: /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
-        message: "Only user@domain.com emails are allowed.",
+        message: 'Only user@domain.com emails are allowed.',
       },
     },
     password: {
-      required: "Input cannot be empty.",
+      required: 'Input cannot be empty.',
       pattern: {
         value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*)[0-9a-zA-Z]{6,}$/,
-        message: "Special characters are not allowed.",
+        message: 'Special characters are not allowed.',
       },
     },
-  };
+  }
 
   const handleRegistration = (data: FormValues) => {
     const userData = {
@@ -59,48 +59,48 @@ export default function UserInfo() {
       name: data.name,
       email: data.email,
       password: data.password,
-    };
+    }
 
-    localStorage.setItem("user-info", JSON.stringify(userData));
+    localStorage.setItem('user-info', JSON.stringify(userData))
 
-    history("/UserProfile");
-  };
+    history('/userprofile')
+  }
 
   return (
-    <div className="bg-blue-900 min-h-screen p-6">
+    <div className="min-h-screen bg-blue-900 p-6">
       <BackHomeButton />
 
-      <form className="bg-blue-800 shadow-lg shadow-blue-500/70 rounded-2xl sm:rounded-3xl p-4 sm:p-6 max-w-[35rem] mx-auto mt-6 min-[425px]:mt-16">
+      <form className="mx-auto mt-6 max-w-[35rem] rounded-2xl bg-blue-800 p-4 shadow-lg shadow-blue-500/70 min-[425px]:mt-16 sm:rounded-3xl sm:p-6">
         <img
           src={Pokedex}
-          className="mx-auto max-[425px]:w-[70%] w-[65%] sm:w-[55%]"
+          className="mx-auto w-[65%] max-[425px]:w-[70%] sm:w-[55%]"
         ></img>
 
-        <h3 className="flex justify-center text-center text-lg sm:text-2xl pb-8 pt-2 text-white font-semibold">
+        <h3 className="flex justify-center pb-8 pt-2 text-center text-lg font-semibold text-white sm:text-2xl">
           Ready to catch some pokemons?
         </h3>
 
-        <div className="flex flex-col mb-6">
-          <label htmlFor="name" className="sm:text-lg text-white font-semibold">
+        <div className="mb-6 flex flex-col">
+          <label htmlFor="name" className="font-semibold text-white sm:text-lg">
             Can you tell us your name?
           </label>
 
           <input
             className={`border ${
               errors.name
-                ? "bg-yellow-200 placeholder:text-yellow-700"
-                : "bg-white focus:bg-blue-200 placeholder:text-gray-500"
-            } p-2.5 sm:p-4 mt-2 text-sm sm:text-base rounded-lg outline-none focus:outline-none transition focus:duration-500 ease-in-out`}
+                ? 'bg-yellow-200 placeholder:text-yellow-700'
+                : 'bg-white placeholder:text-gray-500 focus:bg-blue-200'
+            } mt-2 rounded-lg p-2.5 text-sm outline-none transition ease-in-out focus:outline-none focus:duration-500 sm:p-4 sm:text-base`}
             id="name"
             type="text"
             placeholder="Jane Doe"
-            {...register("name", registerValidation.name)}
-            aria-invalid={errors.name ? "true" : "false"}
+            {...register('name', registerValidation.name)}
+            aria-invalid={errors.name ? 'true' : 'false'}
           />
 
           {errors.name && (
             <p
-              className="text-yellow-300 text-xs sm:text-sm font-semibold pt-2"
+              className="pt-2 text-xs font-semibold text-yellow-300 sm:text-sm"
               role="alert"
             >
               {errors.name?.message}
@@ -108,10 +108,10 @@ export default function UserInfo() {
           )}
         </div>
 
-        <div className="flex flex-col mb-6">
+        <div className="mb-6 flex flex-col">
           <label
             htmlFor="email"
-            className="sm:text-lg text-white font-semibold"
+            className="font-semibold text-white sm:text-lg"
           >
             What's your best email?
           </label>
@@ -119,19 +119,19 @@ export default function UserInfo() {
           <input
             className={`border ${
               errors.email
-                ? "bg-yellow-200 placeholder:text-yellow-700"
-                : "bg-white focus:bg-blue-200 placeholder:text-gray-500"
-            } p-2.5 sm:p-4 mt-2 text-sm sm:text-base rounded-lg outline-none focus:outline-none transition focus:duration-500 ease-in-out`}
+                ? 'bg-yellow-200 placeholder:text-yellow-700'
+                : 'bg-white placeholder:text-gray-500 focus:bg-blue-200'
+            } mt-2 rounded-lg p-2.5 text-sm outline-none transition ease-in-out focus:outline-none focus:duration-500 sm:p-4 sm:text-base`}
             id="email"
             type="text"
             placeholder="janedoe@domain.com"
-            {...register("email", registerValidation.email)}
-            aria-invalid={errors.email ? "true" : "false"}
+            {...register('email', registerValidation.email)}
+            aria-invalid={errors.email ? 'true' : 'false'}
           />
 
           {errors.email && (
             <p
-              className="text-yellow-300 text-xs sm:text-sm font-semibold pt-2"
+              className="pt-2 text-xs font-semibold text-yellow-300 sm:text-sm"
               role="alert"
             >
               {errors.email?.message}
@@ -139,10 +139,10 @@ export default function UserInfo() {
           )}
         </div>
 
-        <div className="flex flex-col mb-6">
+        <div className="mb-6 flex flex-col">
           <label
             htmlFor="password"
-            className="sm:text-lg text-white font-semibold"
+            className="font-semibold text-white sm:text-lg"
           >
             Please create a password!
           </label>
@@ -150,19 +150,19 @@ export default function UserInfo() {
           <input
             className={`border ${
               errors.password
-                ? "bg-yellow-200 placeholder:text-yellow-700"
-                : "bg-white focus:bg-blue-200 placeholder:text-gray-500"
-            } p-2.5 sm:p-4 mt-2 text-sm sm:text-base  rounded-lg outline-none focus:outline-none transition focus:duration-500 ease-in-out`}
+                ? 'bg-yellow-200 placeholder:text-yellow-700'
+                : 'bg-white placeholder:text-gray-500 focus:bg-blue-200'
+            } mt-2 rounded-lg p-2.5 text-sm outline-none  transition ease-in-out focus:outline-none focus:duration-500 sm:p-4 sm:text-base`}
             id="password"
             type="password"
             placeholder="Require 6 caracteres, a capital letter and a number."
-            {...register("password", registerValidation.password)}
-            aria-invalid={errors.password ? "true" : "false"}
+            {...register('password', registerValidation.password)}
+            aria-invalid={errors.password ? 'true' : 'false'}
           />
 
           {errors.password && (
             <p
-              className="text-yellow-300 text-xs sm:text-sm font-semibold pt-2"
+              className="pt-2 text-xs font-semibold text-yellow-300 sm:text-sm"
               role="alert"
             >
               {errors.password?.message}
@@ -173,11 +173,11 @@ export default function UserInfo() {
         <button
           type="submit"
           onClick={handleSubmit(handleRegistration)}
-          className="flex bg-yellow-400 w-full justify-center py-3 rounded-lg text-blue-800 sm:text-xl font-bold mt-6"
+          className="mt-6 flex w-full justify-center rounded-lg bg-yellow-400 py-3 font-bold text-blue-800 sm:text-xl"
         >
           Sign In
         </button>
       </form>
     </div>
-  );
+  )
 }

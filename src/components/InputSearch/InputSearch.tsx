@@ -1,11 +1,11 @@
-import axios from "axios";
+import axios from 'axios'
 
-import { useContext, ChangeEvent } from "react";
-import { AppContext } from "../../context/AppContext";
+import { useContext, ChangeEvent } from 'react'
+import { AppContext } from '../../context/AppContext'
 
-import { MagnifyingGlass, X } from "@phosphor-icons/react";
+import { MagnifyingGlass, X } from '@phosphor-icons/react'
 
-export default function MenuFilter() {
+export function InputSearch() {
   const {
     setList,
     inputValue,
@@ -14,22 +14,22 @@ export default function MenuFilter() {
     setIsSearching,
     limit,
     offset,
-  } = useContext(AppContext);
+  } = useContext(AppContext)
 
   function findPokemonInput() {
     if (inputValue.length !== 0) {
       axios
         .get(`https://pokeapi.co/api/v2/pokemon/${inputValue}`)
         .then((response) => {
-          const { name } = response.data;
+          const { name } = response.data
           setList([
             { name, url: `https://pokeapi.co/api/v2/pokemon/${inputValue}` },
-          ]);
-          setIsSearching(false);
+          ])
+          setIsSearching(false)
         })
-        .catch((error) => {
-          alert("Pokemon not found");
-        });
+        .catch(() => {
+          alert('Pokemon not found')
+        })
     }
   }
 
@@ -37,19 +37,19 @@ export default function MenuFilter() {
     axios
       .get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit${limit}`)
       .then((response) => {
-        setTimeout(() => setIsLoading(false), 500);
-        setList(response.data.results);
-        setInputValue("");
-        setIsSearching(true);
-      });
+        setTimeout(() => setIsLoading(false), 500)
+        setList(response.data.results)
+        setInputValue('')
+        setIsSearching(true)
+      })
   }
 
   return (
-    <span className="flex items-center justify-between mr-4">
+    <span className="mr-4 flex items-center justify-between">
       <MagnifyingGlass
         size={23}
         onClick={findPokemonInput}
-        className="absolute text-blue-600 ml-3 cursor-pointer"
+        className="absolute ml-3 cursor-pointer text-blue-600"
       />
       <input
         type="text"
@@ -58,13 +58,13 @@ export default function MenuFilter() {
         onChange={(e: ChangeEvent<HTMLInputElement>) =>
           setInputValue(e.target.value)
         }
-        className="bg-blue-100 border-2 focus:border-blue-600 outline-none focus:outline-none transition focus:duration-500 ease-in-out py-3 pl-12 pr-4 min-[434px]:w-[22rem] rounded-xl text-sm sm:text-base"
+        className="rounded-xl border-2 bg-blue-100 py-3 pl-12 pr-4 text-sm outline-none transition ease-in-out focus:border-blue-600 focus:outline-none focus:duration-500 min-[434px]:w-[22rem] sm:text-base"
       />
       <X
         size={18}
         onClick={clearInputValue}
-        className="text-blue-600 cursor-pointer -ml-8"
+        className="-ml-8 cursor-pointer text-blue-600"
       />
     </span>
-  );
+  )
 }

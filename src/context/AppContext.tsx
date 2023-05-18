@@ -1,18 +1,18 @@
-import React, { FC, useState } from "react";
-import { Pokemon, PokemonProps } from "../types/Pokemon";
+import React, { useState } from 'react'
+import { Pokemon, PokemonProps } from '../types/Pokemon'
 
-export const AppContext = React.createContext({} as PokemonProps);
+export const AppContext = React.createContext({} as PokemonProps)
 
 export const AppContextProvider = ({ children }: Pokemon) => {
-  const [list, setList] = useState<Pokemon[]>([]);
-  const [pokemonTypeName, setPokemonTypeName] = useState("");
-  const [inputValue, setInputValue] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSearching, setIsSearching] = useState(true);
-  const [isGeneration, setIsGeneration] = useState(false);
-  const limit = 102;
-  const [offset, setOffset] = useState(0);
-  const [generationText, setGenerationText] = useState("");
+  const [list, setList] = useState<Pokemon[]>([])
+  const [pokemonTypeName, setPokemonTypeName] = useState('')
+  const [inputValue, setInputValue] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const [isSearching, setIsSearching] = useState(true)
+  const [isGeneration, setIsGeneration] = useState(false)
+  const limit = 102
+  const [offset, setOffset] = useState(0)
+  const [generationText, setGenerationText] = useState('')
 
   return (
     <AppContext.Provider
@@ -38,5 +38,5 @@ export const AppContextProvider = ({ children }: Pokemon) => {
     >
       {children}
     </AppContext.Provider>
-  );
-};
+  )
+}
