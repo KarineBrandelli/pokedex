@@ -4,17 +4,13 @@ import { useContext, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect, ChangeEvent } from "react";
 
 import Card from "../components/Card/Card";
 import Header from "../components/Header/Header";
 import Loader from "../components/Loader/Loader";
 import Pagination from "../components/Pagination/Pagination";
 import InputSearch from "../components/InputSearch/InputSearch";
-import DropdownPokemonType from "../components/DropdownPokemonType/DropdownPokemonType";
-import DropdownPokemonGeneration from "../components/DropdownPokemonGeneration/DropdownPokemonGeneration";
-
-import dataGeneration from "../utils/dataGeneration";
+import { Dropdowns } from "../components/Dropdowns/Dropdowns";
 
 export default function Home() {
   const history = useNavigate();
@@ -62,18 +58,8 @@ export default function Home() {
     <>
       <Header />
       <div className="w-[85%] mx-auto flex flex-wrap items-center justify-center gap-5 min-[829px]:justify-between py-10">
-        <InputSearch
-          value={inputValue}
-          handleClear={clearInputValue}
-          handleClick={findPokemonInput}
-          handleChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setInputValue(e.target.value)
-          }
-        />
-        <span className="flex max-[400px]:flex-col items-center max-[400px]:gap-4 gap-8">
-          <DropdownPokemonGeneration handleClick={getPokemonGeneration} />
-          <DropdownPokemonType handleClick={getPokemonType} />
-        </span>
+        <InputSearch />
+        <Dropdowns />
       </div>
 
       {isLoading ? (
@@ -95,11 +81,7 @@ export default function Home() {
         </main>
       )}
 
-      <Pagination
-        setHidden={isSearching && !isLoading && !isGeneration}
-        handlePrevious={() => setOffset(offset - limit)}
-        handleNext={() => setOffset(offset + limit)}
-      />
+      <Pagination setHidden={isSearching && !isLoading && !isGeneration} />
     </>
   );
 }
