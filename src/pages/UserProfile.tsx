@@ -10,11 +10,6 @@ interface UserInformation {
   email: string
 }
 
-interface PokemonFilterProps {
-  name: string
-  url: string
-}
-
 export function UserProfile() {
   const [userProfileInfo, setUserProfileInfo] = useState<UserInformation>({
     name: 'Your Username',
@@ -42,26 +37,6 @@ export function UserProfile() {
       })
     }
   }, [])
-
-  function removePokemon(name: string) {
-    const storedData = localStorage.getItem('user-info')
-
-    if (storedData) {
-      const profilePokemons = JSON.parse(storedData)
-
-      const findPokemonName = profilePokemons.pokemons.filter(
-        (pokemon: PokemonFilterProps) => pokemon.name !== name,
-      )
-
-      const userData = {
-        ...profilePokemons,
-        pokemons: findPokemonName,
-      }
-
-      localStorage.setItem('user-info', JSON.stringify(userData))
-      setUserPokemons(findPokemonName)
-    }
-  }
 
   return (
     <>
