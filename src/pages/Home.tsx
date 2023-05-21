@@ -12,6 +12,8 @@ import { Pagination } from '../components/Pagination/Pagination'
 import { InputSearch } from '../components/InputSearch/InputSearch'
 import { Dropdowns } from '../components/Dropdowns/Dropdowns'
 
+import { addPokemon } from '../utils/addPokemon'
+
 export function Home() {
   const history = useNavigate()
 
@@ -57,7 +59,7 @@ export function Home() {
                 key={item.name}
                 name={item.name}
                 url={item.url}
-                handleClick={() => addPokemon(item.name, item.url)}
+                handleClick={() => addPokemon(item.name, item.url, history)}
               />
             ))}
           </div>
