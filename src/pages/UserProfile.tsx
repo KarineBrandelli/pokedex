@@ -1,7 +1,10 @@
+import { useState, useEffect } from 'react'
+
 import { Link } from 'react-router-dom'
 import { Card } from '../components/Card/Card'
-import { useState, useEffect } from 'react'
 import { ArrowLeft, UserCircle } from '@phosphor-icons/react'
+
+import { removePokemon } from '../utils/removePokemon'
 
 import Pokedex from '../assets/pokedex.png'
 
@@ -83,7 +86,7 @@ export function UserProfile() {
                 key={`${pokemon.name}-${i}`}
                 name={pokemon.name}
                 url={pokemon.url}
-                handleClick={() => removePokemon(pokemon.name)}
+                handleClick={() => removePokemon(pokemon.name, setUserPokemons)}
               />
             ))
           )}
