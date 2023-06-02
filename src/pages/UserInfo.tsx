@@ -47,7 +47,7 @@ export function UserInfo() {
     password: {
       required: 'Input cannot be empty.',
       pattern: {
-        value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*)[0-9a-zA-Z]{6,}$/,
+        value: /[0-9a-zA-Z]{6,}$/,
         message: 'Special characters are not allowed.',
       },
     },
