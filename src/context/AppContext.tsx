@@ -10,7 +10,7 @@ export const AppContextProvider = ({ children }: Pokemon) => {
   const [isLoading, setIsLoading] = useState(false)
   const [isSearching, setIsSearching] = useState(true)
   const [isGeneration, setIsGeneration] = useState(false)
-  const limit = 102
+  const limit = 66
   const [offset, setOffset] = useState(0)
   const [generationText, setGenerationText] = useState('')
 
