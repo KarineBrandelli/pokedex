@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { BackHomeButton } from '../components/BackHomeButton/BackHomeButton'
@@ -20,13 +19,6 @@ export function UserInfo() {
     formState: { errors },
   } = useForm<FormValues>({
     mode: 'onBlur',
-  })
-
-  const userInfo = useState({
-    name: '',
-    email: '',
-    password: '',
-    pokemons: [],
   })
 
   const registerValidation = {
@@ -51,6 +43,13 @@ export function UserInfo() {
         message: 'Special characters are not allowed.',
       },
     },
+  }
+
+  const userInfo = {
+    name: '',
+    email: '',
+    password: '',
+    pokemons: [],
   }
 
   const handleRegistration = (data: FormValues) => {
