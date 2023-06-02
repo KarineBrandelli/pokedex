@@ -87,9 +87,9 @@ export function UserInfo() {
           <input
             className={`border ${
               errors.name
-                ? 'bg-yellow-200 placeholder:text-yellow-700'
-                : 'bg-white placeholder:text-gray-500 focus:bg-blue-200'
-            } mt-2 rounded-lg p-2.5 text-sm outline-none transition ease-in-out focus:outline-none focus:duration-500 sm:p-4 sm:text-base`}
+                ? 'bg-yellow-200'
+                : 'bg-white focus:bg-blue-200'
+            } mt-2 rounded-lg p-2.5 text-sm outline-none transition ease-in-out focus:outline-none focus:duration-500 sm:p-4 sm:text-base text-gray-700`}
             id="name"
             type="text"
             placeholder="Jane Doe"
@@ -118,9 +118,9 @@ export function UserInfo() {
           <input
             className={`border ${
               errors.email
-                ? 'bg-yellow-200 placeholder:text-yellow-700'
-                : 'bg-white placeholder:text-gray-500 focus:bg-blue-200'
-            } mt-2 rounded-lg p-2.5 text-sm outline-none transition ease-in-out focus:outline-none focus:duration-500 sm:p-4 sm:text-base`}
+                ? 'bg-yellow-200'
+                : 'bg-white focus:bg-blue-200'
+            } mt-2 rounded-lg p-2.5 text-sm outline-none transition ease-in-out focus:outline-none focus:duration-500 sm:p-4 sm:text-base text-gray-700`}
             id="email"
             type="text"
             placeholder="janedoe@domain.com"
@@ -149,9 +149,9 @@ export function UserInfo() {
           <input
             className={`border ${
               errors.password
-                ? 'bg-yellow-200 placeholder:text-yellow-700'
-                : 'bg-white placeholder:text-gray-500 focus:bg-blue-200'
-            } mt-2 rounded-lg p-2.5 text-sm outline-none  transition ease-in-out focus:outline-none focus:duration-500 sm:p-4 sm:text-base`}
+                ? 'bg-yellow-200'
+                : 'bg-white focus:bg-blue-200'
+            } mt-2 rounded-lg p-2.5 text-sm outline-none  transition ease-in-out focus:outline-none focus:duration-500 sm:p-4 sm:text-base text-gray-700`}
             id="password"
             type="password"
             placeholder="Require 6 caracteres, a capital letter and a number."
